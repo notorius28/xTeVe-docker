@@ -6,6 +6,8 @@ RUN apk add --no-cache git
 
 RUN git clone https://github.com/xteve-project/xTeVe.git
 
+WORKDIR /code/xTeVe
+
 RUN go get github.com/koron/go-ssdp
 RUN go get github.com/gorilla/websocket
 RUN go get github.com/kardianos/osext
