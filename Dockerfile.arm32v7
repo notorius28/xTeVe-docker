@@ -31,4 +31,4 @@ VOLUME /tmp
 
 EXPOSE 34400
 
-ENTRYPOINT ["/app/xteve.go","-p=34400","-config=/config"]
+ENTRYPOINT ["/app/xteve.go","-p", "34400","-config", "/config"]
