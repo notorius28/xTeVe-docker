@@ -21,6 +21,9 @@ FROM scratch as runtime
 WORKDIR /app
 COPY --from=builder /out .
 
+VOLUME /config
+VOLUME /tmp
+
 EXPOSE 34400
 
-ENTRYPOINT ["/app/xteve.go"]
+ENTRYPOINT ["/app/xteve.go","-p=34400","-config=/config"]
