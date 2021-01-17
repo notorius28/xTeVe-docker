@@ -26,9 +26,10 @@ FROM arm32v7/alpine:latest as runtime
 WORKDIR /app
 COPY --from=builder /out .
 
+VOLUME /root/.xteve
 VOLUME /config
 VOLUME /tmp
 
 EXPOSE 34400
 
-ENTRYPOINT ["/bin/sh","-c","/app/xteve.go -p=34400 -config=/config"]
+ENTRYPOINT ["/app/xteve.go"]
