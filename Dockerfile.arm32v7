@@ -16,7 +16,12 @@ RUN mkdir /out
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm GOARM=7 go build -o /out/xteve.go
 
-FROM scratch as runtime
+FROM alpine:latest as runtime
+
+# Timezone (TZ)
+RUN apk update && apk add --no-cache tzdata
+ENV TZ=America/Argentina/Buenos_Aires
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /app
 COPY --from=builder /out .
@@ -26,4 +31,4 @@ VOLUME /tmp
 
 EXPOSE 34400
 
-ENTRYPOINT ["/app/xteve.go","-p", "34400","-config", "/config"]
+ENTRYPOINT ["/bin/sh","-c","/app/xteve.go -p=34400 -config=/config"]
