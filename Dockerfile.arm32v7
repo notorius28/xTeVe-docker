@@ -20,7 +20,7 @@ FROM arm32v7/alpine:latest as runtime
 
 # Timezone (TZ)
 #RUN apk update && apk add --no-cache tzdata
-#ENV TZ=America/Argentina/Buenos_Aires
+#ENV TZ=Europe/Madrid
 #RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR /app
